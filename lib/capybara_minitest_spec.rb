@@ -13,7 +13,7 @@ module MiniTest::Expectations
     # Define positive assertion.
     positive_assertion_name = :"assert_page_#{without_question_mark}"
     define_method positive_assertion_name do |page, *args|
-      assert wrap(page).send(matcher_name, *args), "Matcher failed: #{without_question_mark}"
+      assert wrap(page).send(matcher_name, *args), positive_failure_message(matcher_name, *args)
     end
 
     # Infect positive assertion.
@@ -23,7 +23,7 @@ module MiniTest::Expectations
     # Define negative assertion.
     negative_assertion_name = :"refute_page_#{without_question_mark}"
     define_method negative_assertion_name do |page, *args|
-      refute wrap(page).send(matcher_name, *args), "Matcher should have failed: #{without_question_mark}"
+      refute wrap(page).send(matcher_name, *args), negative_failure_message(matcher_name, *args)
     end
 
     # Infect negative assertions.
@@ -41,6 +41,18 @@ module MiniTest::Expectations
     else
       Capybara.string(actual.to_s)
     end
+  end
+
+  def base_failure_message(matcher_name, *args)
+    "#{matcher_name}(#{args.join(', ')})"
+  end
+
+  def positive_failure_message(matcher_name, *args)
+    "Matcher failed: #{base_failure_message(matcher_name, *args)}"
+  end
+
+  def negative_failure_message(matcher_name, *args)
+    "Matcher should have failed: #{base_failure_message(matcher_name, *args)}"
   end
 
 end

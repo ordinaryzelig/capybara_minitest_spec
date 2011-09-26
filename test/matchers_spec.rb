@@ -444,4 +444,17 @@ describe CapybaraMinitestSpec do
       end.must_raise(/expected table "No such Table"/)
     end
   end
+
+  describe 'failure message' do
+    it 'shows matcher name and args' do
+      begin
+        'actual'.must_have_css('expected', :count => 1)
+      rescue MiniTest::Assertion => ex
+        exception = ex
+      else
+        flunk 'No exception was raised'
+      end
+      assert_equal 'Matcher failed: has_css?(expected, {:count=>1})', exception.message
+    end
+  end
 end
