@@ -14,6 +14,11 @@ Now you can have similar functionality while using MiniTest::Spec:
 
     page.must_have_content('Title')
 
+Install
+-------
+
+    gem install 'caypbara_minitest_spec'
+
 Compatibility
 -------------
 
