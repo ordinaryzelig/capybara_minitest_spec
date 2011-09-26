@@ -44,7 +44,7 @@ module MiniTest::Expectations
   end
 
   def base_failure_message(matcher_name, *args)
-    "#{matcher_name}(#{args.join(', ')})"
+    "#{matcher_name}(#{args.map(&:inspect).join(', ')})"
   end
 
   def positive_failure_message(matcher_name, *args)

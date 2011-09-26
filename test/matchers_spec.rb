@@ -454,7 +454,7 @@ describe CapybaraMinitestSpec do
       else
         flunk 'No exception was raised'
       end
-      assert_equal 'Matcher failed: has_css?(expected, {:count=>1})', exception.message
+      assert_equal 'Matcher failed: has_css?("expected", {:count=>1})', exception.message
     end
   end
 end
