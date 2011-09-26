@@ -17,7 +17,7 @@ Now you can have similar functionality while using MiniTest::Spec:
 Install
 -------
 
-    gem install 'caypbara_minitest_spec'
+    gem install caypbara_minitest_spec
 
 Compatibility
 -------------
