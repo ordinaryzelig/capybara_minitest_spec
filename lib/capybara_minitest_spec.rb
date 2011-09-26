@@ -1,3 +1,4 @@
+require 'minitest/spec'
 require "capybara_minitest_spec/version"
 
 # Define assertions for each Capybara node matcher.
@@ -12,7 +13,7 @@ module MiniTest::Expectations
     # Define positive assertion.
     positive_assertion_name = :"assert_page_#{without_question_mark}"
     define_method positive_assertion_name do |page, *args|
-      assert wrap(page).send(matcher_name, *args), "Matcher #{without_question_mark} failed"
+      assert wrap(page).send(matcher_name, *args), "Matcher failed: #{without_question_mark}"
     end
 
     # Infect positive assertion.
@@ -22,7 +23,7 @@ module MiniTest::Expectations
     # Define negative assertion.
     negative_assertion_name = :"refute_page_#{without_question_mark}"
     define_method negative_assertion_name do |page, *args|
-      refute wrap(page).send(matcher_name, *args), "Matcher #{without_question_mark} should have failed"
+      refute wrap(page).send(matcher_name, *args), "Matcher should have failed: #{without_question_mark}"
     end
 
     # Infect negative assertions.

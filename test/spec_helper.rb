@@ -23,6 +23,6 @@ class Proc
   include MiniTest::Assertions
   # TODO: Replace this with a real assertion that checks the message.
   def must_raise(exception_or_message)
-    assert_raises(MiniTest::Assertion, &self)
+    exception = assert_raises(MiniTest::Assertion, &self)
   end
 end
