@@ -4,7 +4,7 @@ require "capybara_minitest_spec/version"
 
 Gem::Specification.new do |s|
   s.name        = "capybara_minitest_spec"
-  s.version     = CapybaraMinitestSpec::VERSION
+  s.version     = CapybaraMiniTestSpec::VERSION
   s.authors     = ["Jared Ning"]
   s.email       = ["jared@redningja.com"]
   s.homepage    = ""

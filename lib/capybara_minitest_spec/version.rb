@@ -1,3 +1,3 @@
-module CapybaraMinitestSpec
-  VERSION = '0.1.3'
+module CapybaraMiniTestSpec
+  VERSION = '0.2.0'
 end
