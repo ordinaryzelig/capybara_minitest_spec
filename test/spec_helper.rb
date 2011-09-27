@@ -12,12 +12,3 @@ MiniTest::Spec.register_spec_type //, MiniTest::Spec
 $LOAD_PATH << File.join(__FILE__, '../../test_app')
 require 'test_app'
 Capybara.app = TestApp
-
-# Set Capybara default selector to xpath.
-class MiniTest::Spec
-  before :each do
-    Capybara.configure do |config|
-      config.default_selector = :xpath
-    end
-  end
-end

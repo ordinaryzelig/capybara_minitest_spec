@@ -5,6 +5,7 @@ module CapybaraMiniTestSpec
 
     def initialize(node_matcher_name)
       @name = Name.new(node_matcher_name, true)
+      define_expectations
     end
 
     def define_expectations

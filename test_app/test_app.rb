@@ -6,6 +6,10 @@ class TestApp < Sinatra::Base
   set :root, File.dirname(__FILE__)
   set :static, true
 
+  get '/flash_message' do
+    '<div id="flash">Barry Allen</div>'
+  end
+
   get '/' do
     'Hello world! <a href="with_html">Relative</a>'
   end
