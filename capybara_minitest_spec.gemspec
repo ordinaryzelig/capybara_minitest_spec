@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = CapybaraMiniTestSpec::VERSION
   s.authors     = ["Jared Ning"]
   s.email       = ["jared@redningja.com"]
-  s.homepage    = ""
+  s.homepage    = "https://github.com/ordinaryzelig/capybara_minitest_spec"
   s.summary     = %q{MiniTest::Spec expectations for Capybara node matchers.}
   s.description = %q{MiniTest::Spec expectations for Capybara node matchers.}
 
