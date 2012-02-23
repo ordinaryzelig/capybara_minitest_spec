@@ -14,7 +14,7 @@ Now you can have similar functionality while using MiniTest::Spec:
 
 ## Install
 
-    gem install caypbara_minitest_spec
+    gem install capybara_minitest_spec
 
 ## Usage
 
