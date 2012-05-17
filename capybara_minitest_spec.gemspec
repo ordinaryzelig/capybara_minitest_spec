@@ -22,4 +22,5 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'minitest', '>= 2.0'
 
   s.add_development_dependency 'sinatra', '>= 0.9.4'
+  s.add_development_dependency 'rake'
 end
