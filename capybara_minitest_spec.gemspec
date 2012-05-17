@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_runtime_dependency 'capybara'
-  s.add_runtime_dependency 'minitest', '~> 2.0'
+  s.add_runtime_dependency 'minitest', '>= 2.0'
 
   s.add_development_dependency 'sinatra', '>= 0.9.4'
 end

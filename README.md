@@ -1,4 +1,4 @@
-# Capybara MiniTest Spec
+# Capybara MiniTest Spec [![Build Status](https://secure.travis-ci.org/ordinaryzelig/capybara_minitest_spec.png?branch=master)](http://travis-ci.org/ordinaryzelig/capybara_minitest_spec)
 
 Define MiniTest::Spec expectations for Capybara node matchers.
 
@@ -53,4 +53,4 @@ In theory, this should work with any version of Capybara, so the runtime depende
 ## Testing
 
 This gem was tested by basically copying the Capybara spec located in 'spec/rspec/matchers_spec.rb' and altering the test to run with MiniTest.
-Capybara uses xpath as a submodule of the git repository. When adding this gem to gemtesters (http://test.rubygems.org/gems/capybara_minitest_spec), it sounded like too much trouble to check out the submodule, so I just used the regular gem.
+Capybara uses xpath as a submodule of the git repository. I used the regular gem.
