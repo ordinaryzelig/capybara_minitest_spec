@@ -33,13 +33,12 @@ describe CapybaraMiniTestSpec::Matcher do
   end
 
   it "#failure_message with 'assert' arg returns positive assertion failure message" do
-    message = CapybaraMiniTestSpec::Matcher.failure_message('assert', :has_css?, {:option => 1})
-    message.must_equal 'Matcher failed: has_css?({:option=>1})'
+    message = CapybaraMiniTestSpec::Matcher.failure_message('<h1>Test</h1>', 'assert', :has_css?, {:option => 1})
+    message.must_equal "Expected match: has_css?({:option=>1})\nActual content: <h1>Test</h1>"
   end
 
   it "#failure_message with 'refute' arg returns negative assertion failure message" do
-    message = CapybaraMiniTestSpec::Matcher.failure_message('refute', :has_css?, {:option => 1})
-    message.must_equal 'Matcher should have failed: has_css?({:option=>1})'
+    message = CapybaraMiniTestSpec::Matcher.failure_message('<h1>Test</h1>', 'refute', :has_css?, {:option => 1})
+    message.must_equal "Expected no match: has_css?({:option=>1})\n   Actual content: <h1>Test</h1>"
   end
-
 end

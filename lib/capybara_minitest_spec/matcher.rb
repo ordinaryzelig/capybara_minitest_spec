@@ -30,13 +30,18 @@ module CapybaraMiniTestSpec
 
     # Compose failure message.
     # E.g. Matcher failed: has_css?("expected", {:count => 1})
-    def self.failure_message(assertion_method, matcher_name, *args)
+    def self.failure_message(page, assertion_method, matcher_name, *args)
       if assertion_method == 'assert'
-        message = "Matcher failed: "
+        message = "Expected match: "
+        delimiter = "\n"
       else
-        message = 'Matcher should have failed: '
+        message = "Expected no match: "
+        delimiter = "\n   "
       end
-      message += "#{matcher_name}(#{args.map(&:inspect).join(', ')})"
+      message << "#{matcher_name}(#{args.map(&:inspect).join(', ')})"
+      message << delimiter 
+      message << "Actual content: "
+      message << page.to_s
     end
 
     private
@@ -54,7 +59,7 @@ module CapybaraMiniTestSpec
       matcher = self
       assertion_method = name.positive? ? 'assert' : 'refute'
       MiniTest::Assertions.send :define_method, name.assertion do |page, *args|
-        message = matcher.class.failure_message(assertion_method, matcher.name.original, *args)
+        message = matcher.class.failure_message(page, assertion_method, matcher.name.original, *args)
         send(assertion_method, matcher.test(page, *args), message)
       end
     end
