@@ -3,4 +3,4 @@ rvm:
   - 1.9.2
   - 1.9.3
 
-after_install: bundle update capybara
+before_script: bundle update capybara
