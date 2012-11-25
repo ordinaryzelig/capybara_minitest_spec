@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Jared Ning"]
   s.email       = ["jared@redningja.com"]
   s.homepage    = "https://github.com/ordinaryzelig/capybara_minitest_spec"
-  s.summary     = %q{MiniTest::Spec expectations for Capybara node matchers.}
-  s.description = %q{MiniTest::Spec expectations for Capybara node matchers.}
+  s.summary     = %q{Capybara + MiniTest::Spec}
+  s.description = %q{Use Capybara matchers with MiniTest. Specifically, it defines MiniTest::Spec expectations like page.must_have_content('content').}
 
   s.rubyforge_project = "capybara_minitest_spec"
 

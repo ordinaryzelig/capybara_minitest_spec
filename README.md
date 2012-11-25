@@ -1,56 +1,55 @@
-# Capybara MiniTest Spec [![Build Status](https://secure.travis-ci.org/ordinaryzelig/capybara_minitest_spec.png?branch=master)](http://travis-ci.org/ordinaryzelig/capybara_minitest_spec)
+CapybaraMiniTestSpec
+====================
 
-Define MiniTest::Spec expectations for Capybara node matchers.
+[![Build Status](https://secure.travis-ci.org/ordinaryzelig/capybara_minitest_spec.png?branch=master)](http://travis-ci.org/ordinaryzelig/capybara_minitest_spec)
 
 ## Description
 
-If you like using Capybara and RSpec, you're used to matchers like:
+If you've used [Capybara](https://github.com/jnicklas/capybara) and RSpec, you've probably used matchers like:
 
-    page.should have_content('Title')
+```ruby
+page.should have_content('Title')
+```
 
-Now you can have similar functionality while using MiniTest::Spec:
+With CapybaraMiniTestSpec you can have similar functionality while using MiniTest::Spec:
 
-    page.must_have_content('Title')
+```ruby
+page.must_have_content('Title')
+```
+
+You can also use the TestUnit style assertions:
+
+```ruby
+assert_page_has_content page, 'Title'
+```
+
+But if you really want to be simple with MiniTest::Unit, you don't need this gem.
+You can do the following without this gem:
+
+```ruby
+assert page.has_content?('Title'), 'Your custom failure message'
+```
+
+However, if you choose to use this gem, you get Capybara's failure messages as if you were using RSpec matchers.
+
+```ruby
+assert_page_has_content?('<h1>Content</h1>', 'No such Text')
+# fails with 'expected there to be text "No such Text" in "Content"'
+```
 
 ## Install
 
-    gem install capybara_minitest_spec
-
-## Usage
-
-The gem iterates through all of Capybara::Node's matcher methods and defines these things for each one:
-
-* positive assertion:   assert_page_has_css(page, 'h1')
-* positive expectation: page.must_have_css('h1')
-* negative assertion:   refute_page_has_css(page, 'h1')
-* negative expectation: page.wont_have_css('h1')
-
-### Custom Expectations
-
-If you want to add your own custom page expectations, it's easy.
-
 ```ruby
-# First define a Capybara session method so that
-# page.has_flash_message?(message) is available.
-class Capybara::Session
-  def has_flash_message?(message)
-    within '#flash' do
-      has_content? message
-    end
-  end
-end
-# Then create a new CapybaraMiniTestSpec::Matcher.
-CapybaraMiniTestSpec::Matcher.new(:has_flash_message?)
+# Gemfile
+gem 'capybara_minitest_spec'
 ```
 
-Now you can do `page.must_have_flash_message('Successfully created')`
+NOTE: If after installing the Capybara gem, Nokogiri isn't installed, it's a known bug (https://github.com/jnicklas/capybara/issues/882).
 
 ## Compatibility
 
-In theory, this should work with any version of Capybara, so the runtime dependency is not version specific. At the time of this writing, it was tested with Capybara 1.1.1.
-
+In theory, this should work with Capybara >= 2. At the time of this writing, it was tested with Capybara 2.0.1.
 
 ## Testing
 
-This gem was tested by basically copying the Capybara spec located in 'spec/rspec/matchers_spec.rb' and altering the test to run with MiniTest.
-Capybara uses xpath as a submodule of the git repository. I used the regular gem.
+This gem was tested by basically copying the Capybara spec located in 'spec/rspec/matchers_spec.rb' and [altering the test to run with MiniTest](https://gist.github.com/4297afa19edd44885248).
