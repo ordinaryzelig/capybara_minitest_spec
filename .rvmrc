@@ -1,1 +1,1 @@
-rvm use --create ruby-1.9.2-p0@capybara_minispec
+rvm use --create ruby-1.9.3-p327@capybara_minispec

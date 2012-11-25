@@ -156,7 +156,7 @@ describe CapybaraMiniTestSpec do
         it "fails with the selector's failure_message if set" do
           Capybara.add_selector(:monkey) do
             xpath { |num| ".//*[contains(@id, 'monkey')][#{num}]" }
-            failure_message { |node, selector| node.all(".//*[contains(@id, 'monkey')]").map { |node| node.text }.sort.join(', ') }
+            #failure_message { |node, selector| node.all(".//*[contains(@id, 'monkey')]").map { |node| node.text }.sort.join(', ') }
           end
           proc do
             '<h1 id="monkey_paul">Monkey John</h1>'.must_have_selector(:monkey, 14)
@@ -202,7 +202,7 @@ describe CapybaraMiniTestSpec do
         it "fails with the selector's failure_message if set" do
           Capybara.add_selector(:monkey) do
             xpath { |num| ".//*[contains(@id, 'monkey')][#{num}]" }
-            failure_message { |node, selector| node.all(".//*[contains(@id, 'monkey')]").map { |node| node.text }.sort.join(', ') }
+            #failure_message { |node, selector| node.all(".//*[contains(@id, 'monkey')]").map { |node| node.text }.sort.join(', ') }
           end
           proc do
             page.must_have_selector(:monkey, 14)

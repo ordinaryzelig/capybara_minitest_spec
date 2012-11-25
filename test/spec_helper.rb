@@ -1,8 +1,9 @@
 require 'bundler/setup'
 
 require 'minitest/autorun'
-require 'capybara/dsl'
+require 'awesome_print'
 
+require 'capybara/dsl'
 require 'capybara_minitest_spec'
 
 # Make all specs a subclass of MiniTest::Spec.
