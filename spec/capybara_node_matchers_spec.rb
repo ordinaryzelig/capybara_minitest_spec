@@ -1,4 +1,4 @@
-require 'spec_helper'
+require_relative 'helper'
 
 describe CapybaraMiniTestSpec do
   include Capybara::DSL

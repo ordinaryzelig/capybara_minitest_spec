@@ -1,4 +1,4 @@
-require 'spec_helper'
+require_relative 'helper'
 
 describe CapybaraMiniTestSpec::Matcher do
 

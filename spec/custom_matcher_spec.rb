@@ -1,4 +1,4 @@
-require 'spec_helper'
+require_relative 'helper'
 
 class Capybara::Session
   def has_flash_message?(message)
