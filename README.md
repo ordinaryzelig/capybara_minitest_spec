@@ -50,6 +50,8 @@ NOTE: If after installing the Capybara gem, Nokogiri isn't installed, it's a kno
 
 In theory, this should work with Capybara >= 2. At the time of this writing, it was tested with Capybara 2.0.1.
 
+For Capybara < 2 support, use a version of this gem < 1.0.
+
 ## Testing
 
 This gem was tested by basically copying the Capybara spec located in 'spec/rspec/matchers_spec.rb' and [altering the test to run with MiniTest](https://gist.github.com/4297afa19edd44885248).
