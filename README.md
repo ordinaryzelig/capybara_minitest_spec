@@ -46,6 +46,47 @@ gem 'capybara_minitest_spec'
 
 NOTE: If after installing the Capybara gem, Nokogiri isn't installed, it's a known bug (https://github.com/jnicklas/capybara/issues/882).
 
+
+## Matchers
+
+
+```ruby
+page.must_have_css('h1')
+page.must_have_css('h1  ', :count => 1)
+
+page.should have_xpath('//h1')
+page.must_have_xpath("//h1[@id='foo']")
+
+page.must_have_selector('//h1')
+page.must_have_selector('//h1', :text => 'Hello World')
+page.must_have_selector("//h1[@id='foo']")
+
+page.must_have_content('Hello World')  # String matching
+page.must_have_content(/Hello */)  # Regexp matching
+
+page.must_have_text('Hello World') # String matching
+page.must_have_text(/Hello */) # Regexp matching
+
+page.must_have_link('About Us')  # Find a link with the inner text
+
+page.must_have_button('Ok')  # Find a button with the text
+
+page.must_have_select('Choose An Item')  # Select box with label
+
+page.must_have_field('foo')  # Find an input field with the label
+page.must_have_checked_field('foo')
+page.must_have_unchecked_field('foo')
+
+page.must_have_table('My Chart')  # Table with caption
+```
+
+Each matcher also has a "wont" matcher such as:
+
+
+```ruby
+page.wont_have_css('h1')
+```
+
 ## Compatibility
 
 In theory, this should work with Capybara >= 2. At the time of this writing, it was tested with Capybara 2.0.1.
