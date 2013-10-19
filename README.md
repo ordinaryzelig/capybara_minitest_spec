@@ -37,6 +37,9 @@ assert_page_has_content?('<h1>Content</h1>', 'No such Text')
 # fails with 'expected there to be text "No such Text" in "Content"'
 ```
 
+You can see all the available matchers [here] (https://github.com/jnicklas/capybara/blob/master/lib/capybara/rspec/matchers.rb#L104).
+CapybaraMiniTestSpec iterates through those "have_x" methods and creates corresponding MiniTest assertions/expectations.
+
 ## Install
 
 ```ruby
@@ -48,7 +51,7 @@ NOTE: If after installing the Capybara gem, Nokogiri isn't installed, it's a kno
 
 ## Compatibility
 
-In theory, this should work with Capybara >= 2. At the time of this writing, it was tested with Capybara 2.0.1.
+In theory, this should work with Capybara >= 2. The latest version it was tested with was Capybara 2.1.0.
 
 ## Testing
 
