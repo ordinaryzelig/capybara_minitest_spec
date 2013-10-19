@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.homepage    = "https://github.com/ordinaryzelig/capybara_minitest_spec"
   s.summary     = %q{Capybara + MiniTest::Spec}
   s.description = %q{Use Capybara matchers with MiniTest. Specifically, it defines MiniTest::Spec expectations like page.must_have_content('content').}
+  s.license     = "MIT"
 
   s.rubyforge_project = "capybara_minitest_spec"
 
