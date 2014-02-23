@@ -49,6 +49,11 @@ gem 'capybara_minitest_spec'
 
 NOTE: If after installing the Capybara gem, Nokogiri isn't installed, it's a known bug (https://github.com/jnicklas/capybara/issues/882).
 
+### Rails
+
+* [My blog] (http://redningja.com/dev/minitest-spec-setup-with-capybara-in-rails-3-1/)
+* [Railscast (pro episode)] (http://railscasts.com/episodes/327-minitest-with-rails)
+
 ## Compatibility
 
 In theory, this should work with Capybara >= 2. The latest version it was tested with was Capybara 2.1.0.
