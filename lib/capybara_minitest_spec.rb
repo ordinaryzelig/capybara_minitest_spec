@@ -1,5 +1,6 @@
 require "capybara_minitest_spec/version"
 
+require 'minitest/autorun'
 require 'minitest/spec'
 require 'capybara'
 require 'capybara/rspec/matchers'
