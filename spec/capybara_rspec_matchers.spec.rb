@@ -77,7 +77,6 @@ describe Capybara::RSpecMatchers do
             "<h1>Text</h1>".must_have_css('h1', between: 2..3)
           end.must_fail_with_message("expected to find css \"h1\" between 2 and 3 times, found 1 match: \"Text\"")
         end
-
       end
 
       context "with should_not" do
@@ -357,18 +356,24 @@ describe Capybara::RSpecMatchers do
 
     context "on a string" do
       context "with should" do
-        it "passes if has_text? returns true" do
+        it "passes if text contains given string" do
           "<h1>Text</h1>".must_have_text('Text')
         end
 
-        it "passes if has_text? returns true using regexp" do
+        it "passes if text matches given regexp" do
           "<h1>Text</h1>".must_have_text(/ext/)
         end
 
-        it "fails if has_text? returns false" do
+        it "fails if text doesn't contain given string" do
           expect do
             "<h1>Text</h1>".must_have_text('No such Text')
           end.must_fail_with_message(/expected to find text "No such Text" in "Text"/)
+        end
+
+        it "fails if text doesn't match given regexp" do
+          expect do
+            "<h1>Text</h1>".must_have_text(/No such Text/)
+          end.must_fail_with_message('expected to find text matching /No such Text/ in "Text"')
         end
 
         it "casts Fixnum to string" do
@@ -380,30 +385,30 @@ describe Capybara::RSpecMatchers do
         it "fails if matched text count does not equal to expected count" do
           expect do
             "<h1>Text</h1>".must_have_text('Text', count: 2)
-          end.must_fail_with_message(/expected to find text "Text" 2 times in "Text"/)
+          end.must_fail_with_message('expected to find text "Text" 2 times but found 1 time in "Text"')
         end
 
         it "fails if matched text count is less than expected minimum count" do
           expect do
             "<h1>Text</h1>".must_have_text('Lorem', minimum: 1)
-          end.must_fail_with_message(/expected to find text "Lorem" at least 1 time in "Text"/)
+          end.must_fail_with_message('expected to find text "Lorem" at least 1 time but found 0 times in "Text"')
         end
 
         it "fails if matched text count is more than expected maximum count" do
           expect do
             "<h1>Text TextText</h1>".must_have_text('Text', maximum: 2)
-          end.must_fail_with_message(/expected to find text "Text" at most 2 times in "Text TextText"/)
+          end.must_fail_with_message('expected to find text "Text" at most 2 times but found 3 times in "Text TextText"')
         end
 
         it "fails if matched text count does not belong to expected range" do
           expect do
             "<h1>Text</h1>".must_have_text('Text', between: 2..3)
-          end.must_fail_with_message(/expected to find text "Text" between 2 and 3 times in "Text"/)
+          end.must_fail_with_message('expected to find text "Text" between 2 and 3 times but found 1 time in "Text"')
         end
       end
 
       context "with should_not" do
-        it "passes if has_no_text? returns true" do
+        it "passes if text doesn't contain a string" do
           "<h1>Text</h1>".wont_have_text('No such Text')
         end
 
@@ -411,7 +416,7 @@ describe Capybara::RSpecMatchers do
           "<h1>Text</h1>".wont_have_text('.')
         end
 
-        it "fails if has_no_text? returns false" do
+        it "fails if text contains a string" do
           expect do
             "<h1>Text</h1>".wont_have_text('Text')
           end.must_fail_with_message(/expected not to find text "Text" in "Text"/)
@@ -471,10 +476,11 @@ describe Capybara::RSpecMatchers do
         end
       end
     end
+
   end
 
   describe "have_link matcher" do
-    let(:html) { '<a href="#">Just a link</a>' }
+    let(:html) { '<a href="#">Just a link</a><a href="#">Another link</a>' }
 
     it "gives proper description" do
       have_link('Just a link').description.must_equal "have link \"Just a link\""
@@ -506,23 +512,27 @@ describe Capybara::RSpecMatchers do
       it "fails if there is no such title" do
         expect do
           html.must_have_title('No such title')
-        end.must_fail_with_message(/expected there to be title "No such title"/)
+        end.must_fail_with_message('expected "Just a title" to include "No such title"')
+      end
+
+      it "fails if title doesn't match regexp" do
+        expect do
+          html.must_have_title(/[[:upper:]]+[[:lower:]]+l{2}o/)
+        end.must_fail_with_message('expected "Just a title" to match /[[:upper:]]+[[:lower:]]+l{2}o/')
       end
     end
 
     context "on a page or node" do
-      before do
-        visit('/with_js')
-      end
-
       it "passes if there is such a title" do
+        visit('/with_js')
         page.must_have_title('with_js')
       end
 
       it "fails if there is no such title" do
+        visit('/with_js')
         expect do
           page.must_have_title('No such title')
-        end.must_fail_with_message(/expected there to be title "No such title"/)
+        end.must_fail_with_message('expected "with_js" to include "No such title"')
       end
     end
   end
@@ -546,20 +556,43 @@ describe Capybara::RSpecMatchers do
   end
 
   describe "have_field matcher" do
-    let(:html) { '<p><label>Text field<input type="text"/></label></p>' }
+    let(:html) { '<p><label>Text field<input type="text" value="some value"/></label></p>' }
 
     it "gives proper description" do
       have_field('Text field').description.must_equal "have field \"Text field\""
     end
 
+    it "gives proper description for a given value" do
+      have_field('Text field', with: 'some value').description.must_equal "have field \"Text field\" with value \"some value\""
+    end
+    
     it "passes if there is such a field" do
       html.must_have_field('Text field')
+    end
+
+    it "passes if there is such a field with value" do
+      html.must_have_field('Text field', with: 'some value')
     end
 
     it "fails if there is no such field" do
       expect do
         html.must_have_field('No such Field')
       end.must_fail_with_message(/expected to find field "No such Field"/)
+    end
+
+    it "fails if there is such field but with false value" do
+      expect do
+        html.must_have_field('Text field', with: 'false value')
+      end.must_fail_with_message(/expected to find field "Text field"/)
+    end
+
+    it "treats a given value as a string" do
+      class Foo
+        def to_s
+          "some value"
+        end
+      end
+      html.must_have_field('Text field', with: Foo.new)
     end
   end
 
@@ -570,9 +603,9 @@ describe Capybara::RSpecMatchers do
     end
 
     it "gives proper description" do
-      have_checked_field('it is checked').description.must_equal "have field \"it is checked\""
+      have_checked_field('it is checked').description.must_equal "have field \"it is checked\" that is checked"
     end
-
+    
     context "with should" do
       it "passes if there is such a field and it is checked" do
         html.must_have_checked_field('it is checked')
@@ -615,7 +648,7 @@ describe Capybara::RSpecMatchers do
     end
 
     it "gives proper description" do
-      have_unchecked_field('unchecked field').description.must_equal "have field \"unchecked field\""
+      have_unchecked_field('unchecked field').description.must_equal "have field \"unchecked field\" that is not checked"
     end
 
     context "with should" do
@@ -658,6 +691,10 @@ describe Capybara::RSpecMatchers do
 
     it "gives proper description" do
       have_select('Select Box').description.must_equal "have select box \"Select Box\""
+    end
+
+    it "gives proper description for a given selected value" do
+      have_select('Select Box', selected: 'some value').description.must_equal "have select box \"Select Box\" with \"some value\" selected"
     end
 
     it "passes if there is such a select" do

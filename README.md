@@ -56,7 +56,7 @@ NOTE: If after installing the Capybara gem, Nokogiri isn't installed, it's a kno
 
 ## Compatibility
 
-In theory, this should work with Capybara >= 2. The latest version it was tested with was Capybara 2.1.0.
+In theory, this should work with Capybara >= 2. The latest version it was tested with was Capybara 2.4.1.
 
 For Capybara < 2 support, use a version of this gem < 1.0.
 
