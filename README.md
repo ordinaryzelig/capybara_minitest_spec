@@ -37,7 +37,7 @@ assert_page_has_content?('<h1>Content</h1>', 'No such Text')
 # fails with 'expected there to be text "No such Text" in "Content"'
 ```
 
-You can see all the available matchers [here] (https://github.com/jnicklas/capybara/blob/master/lib/capybara/rspec/matchers.rb#L104).
+You can see all the available matchers [here] (https://github.com/jnicklas/capybara/blob/master/lib/capybara/rspec/matchers.rb).
 CapybaraMiniTestSpec iterates through those "have_x" methods and creates corresponding MiniTest assertions/expectations.
 
 ## Install
