@@ -3,11 +3,17 @@
 require_relative 'helper'
 
 # Bridge some gaps between RSpec and MiniTest.
-class Minitest::Test
-  class << self
-    alias_method :context, :describe
+case MiniTest::Unit::VERSION.split('.').first.to_i
+when 5
+  class Minitest::Test
+    class << self
+      alias_method :context, :describe
+    end
+    alias_method :expect, :proc
   end
-  alias_method :expect, :proc
+else
+  Kernel.send(:alias_method, :context, :describe)
+  Kernel.send(:alias_method, :expect, :proc)
 end
 
 module MiniTest::Assertions
