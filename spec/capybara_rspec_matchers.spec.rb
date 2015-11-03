@@ -18,15 +18,15 @@ end
 
 module MiniTest::Assertions
   # Yield, rescue, compare exception's message.
-  def assert_fails_with_message(exception_message)
-    yield
+  def assert_fails_with_message(_proc, exception_message)
+    _proc.call
   rescue Exception => exception
     exception_raised = true
     assert_match exception_message, exception.message
   ensure
     assert exception_raised, 'expected exception to be raised'
   end
-  Proc.infect_an_assertion :assert_fails_with_message, :must_fail_with_message
+  Proc.infect_an_assertion :assert_fails_with_message, :must_fail_with_message, :proc_first
 end
 
 # There is a capybara/spec/spec_helper, but the following lines seeem to be enough.
