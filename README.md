@@ -68,6 +68,10 @@ Supports Minitest >= 4.
 It may work for earlier versions, I just haven't tested it.
 If you need it to support an earlier version, let me know and I'll see what I can do.
 
+### Cucumber
+
+Cucumber is not officially supported. See [#10](https://github.com/ordinaryzelig/capybara_minitest_spec/issues/10#issuecomment-152404532) for a possible workaround.
+
 ## Testing
 
 This gem was tested by basically copying the Capybara spec located in 'spec/rspec/matchers_spec.rb' and [altering the test to run with MiniTest](https://gist.github.com/4297afa19edd44885248).
