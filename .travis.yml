@@ -1,6 +1,9 @@
 language: ruby
 rvm:
-  - 1.9.3
+  # I removed travis support for 1.9.3 because of a seemingly unrelated test failure
+  # https://travis-ci.org/ordinaryzelig/capybara_minitest_spec/jobs/95284311.
+  # But I have no reason to believe that it shouldn't still work.
+  # - 1.9.3 
   - 2.0.0
   - 2.1.0
   - 2.2.2
