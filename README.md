@@ -57,7 +57,7 @@ NOTE: If after installing the Capybara gem, Nokogiri isn't installed, it's a kno
 If you choose to use Rails's default ActionDispatch::IntegrationTest, just extend Minitest::Spec::DSL. E.g.
 
 ```ruby
-# Maybe in a heper or something.
+# Maybe in a helper or something.
 ActionDispatch::IntegrationTest.extend Minitest::Spec::DSL
 ```
 
