@@ -89,3 +89,6 @@ Cucumber is not officially supported. See [#10](https://github.com/ordinaryzelig
 ## Testing
 
 This gem was tested by basically copying the Capybara spec located in 'spec/rspec/matchers_spec.rb' and [altering the test to run with MiniTest](https://gist.github.com/4297afa19edd44885248).
+
+A tutorial on [how to perform integration tests on Ruby on Rails with Minitest and Capybara](https://semaphoreci.com/community/tutorials/integration-testing-ruby-on-rails-with-minitest-and-capybara)
+
