@@ -32,6 +32,7 @@ end
 # There is a capybara/spec/spec_helper, but the following lines seeem to be enough.
 # Also, capybara/spec/spec_helper requires rspec.
 require 'capybara/spec/test_app'
+require 'capybara/dsl'
 Capybara.default_selector = :xpath
 Capybara.app = TestApp
 
