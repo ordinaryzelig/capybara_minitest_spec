@@ -16,7 +16,7 @@ module CapybaraMiniTestSpec
   private
 
     def has
-      have.sub /^have/, 'has'
+      have.sub(/^have/, 'has')
     end
 
     def have
