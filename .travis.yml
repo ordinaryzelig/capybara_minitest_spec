@@ -4,7 +4,9 @@ rvm:
   # https://travis-ci.org/ordinaryzelig/capybara_minitest_spec/jobs/95284311.
   # But I have no reason to believe that it shouldn't still work.
   # - 1.9.3 
-  - 2.1.0
+
+  # Removing because rack-test update seems to require > 2.1.
+  #- 2.1.0
   - 2.2.2
   - 2.4.0
 gemfile:
