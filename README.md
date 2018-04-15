@@ -1,6 +1,12 @@
 CapybaraMiniTestSpec
 ====================
 
+# DEPRECATED
+
+Capybara now supports minitest out of the box. So this gem is no longer necessary.
+
+
+
 [![Build Status](https://secure.travis-ci.org/ordinaryzelig/capybara_minitest_spec.png?branch=master)](http://travis-ci.org/ordinaryzelig/capybara_minitest_spec)
 
 ## Description
